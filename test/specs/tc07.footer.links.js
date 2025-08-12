@@ -1,12 +1,9 @@
-const { expect } = require('@wdio/globals');
-const LoginPage = require('../pageobjects/login.page');
+const loginPage = require('../pageobjects/login.page');
 
-describe('Footer Links', () => {
-  const baseUrl = 'https://www.saucedemo.com/';
-
+describe('footer links', () => {
   before(async () => {
-    await LoginPage.open();
-    await LoginPage.login('standard_user', 'secret_sauce');
+    await loginPage.open();
+    await loginPage.login('standard_user', 'secret_sauce');
 
     await $('#inventory_container').waitForExist({ timeout: 5000 });
 
@@ -31,7 +28,7 @@ describe('Footer Links', () => {
 
     await browser.waitUntil(
       async () => (await browser.getWindowHandles()).length === 2,
-      { timeout: 5000, timeoutMsg: 'Открытие новой вкладки заняло слишком много времени' }
+      { timeout: 5000, timeoutMsg: 'Opening new tab took too long' }
     );
 
     const handles = await browser.getWindowHandles();
@@ -40,11 +37,11 @@ describe('Footer Links', () => {
 
     await browser.waitUntil(
       async () => (await browser.getUrl()).toLowerCase().includes(expectedSubstring),
-      { timeout: 7000, timeoutMsg: `URL не содержит ${expectedSubstring}` }
+      { timeout: 7000, timeoutMsg: `URL does not contain ${expectedSubstring}` }
     );
 
     const url = await browser.getUrl();
-    await expect(url.toLowerCase()).toContain(expectedSubstring);
+    expect(url.toLowerCase()).toContain(expectedSubstring);
 
     await browser.closeWindow();
     await browser.switchToWindow(handles[0]);

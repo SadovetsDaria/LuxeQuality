@@ -1,10 +1,9 @@
-const { expect } = require('@wdio/globals');
-const LoginPage = require('../pageobjects/login.page');
+const loginPage = require('../pageobjects/login.page');
 
-describe('Product sorting', () => {
+describe('product sorting', () => {
     before(async () => {
-        await LoginPage.open();
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await loginPage.open();
+        await loginPage.login('standard_user', 'secret_sauce');
     });
 
     beforeEach(async () => {

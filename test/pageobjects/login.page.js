@@ -18,7 +18,6 @@ class LoginPage extends Page {
         return $('.error-message-container');
     }
 
-    // Метод логина
     async login(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
