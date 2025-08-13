@@ -1,14 +1,17 @@
 const loginPage = require('../pageobjects/login.page');
+const inventoryPage = require('../pageobjects/inventory.page');
+
+const constants = require('../utils/consts.js');
 
 describe('Valid login', () => {
     it('should log in with valid credentials', async () => {
         await loginPage.open();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login(constants.loginName, constants.correctPass);
 
         expect(await browser.getUrl()).toContain('/inventory');
 
-        expect(await $$('.inventory_item')).not.toHaveLength(0);
+        expect(await inventoryPage.inventorryItems).not.toHaveLength(0);
 
-        expect(await $('.shopping_cart_link')).toBeDisplayed();
+        expect(await inventoryPage.shoppingCartLink).toBeDisplayed();
     });
 });

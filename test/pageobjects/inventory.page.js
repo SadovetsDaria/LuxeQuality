@@ -31,6 +31,10 @@ class InventoryPage {
         return $('.shopping_cart_link');
     }
 
+    get inventorryItems() {
+        return $$('.inventory_item');
+    }
+
     async open() {
         await browser.url('https://www.saucedemo.com/inventory.html');
     }
