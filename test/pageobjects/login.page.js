@@ -18,6 +18,10 @@ class LoginPage extends Page {
         return $('.error-message-container');
     }
 
+    get errorMessageH3() {
+        return $('.error-message-container h3');
+    }
+
     async login(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
